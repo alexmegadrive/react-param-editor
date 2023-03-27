@@ -1,4 +1,8 @@
 # react-param-editor
 
-<!--- npm i ---> for installing dependencies
-<!--- npm run dev ---> for running in localhost
+`npm i` for installing dependencies
+`npm run dev` for running in localhost
+
+- Добавлен атрибут type для типизирования параметров (для возможности указания формата поля, текст/число/селектор), что облегчает масштабируемость
+- Рендер поля в HTML в соответствии с его типом
+- Универсальный компонент handleChange настроен на работу со всеми типами полей
