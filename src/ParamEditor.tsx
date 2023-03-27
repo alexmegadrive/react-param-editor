@@ -11,7 +11,7 @@ interface Param {
 }
 interface State {
   paramValues: ParamValue[];
-  colors?: Color[];
+  colors: Color[];
 }
 
 interface ParamValue {
@@ -107,10 +107,10 @@ export const model: Model = {
       value: "TopShop",
     },
   ],
-  colors: [],
+  colors: ["red", "green"],
 };
 export default class ParamEditor extends React.Component<Props, State> {
-  state: State = {
+  state: Model = {
     paramValues: this.props.model.paramValues,
     colors: this.props.model.colors,
   };
@@ -128,12 +128,23 @@ export default class ParamEditor extends React.Component<Props, State> {
     };
     this.setState({ ...this.state, paramValues: newParamValues });
   };
+  private handleChangeColor = (event: React.SyntheticEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (!target.checked) {
+      const newColors = this.state.colors.filter((el) => el !== target.value);
+      this.setState({ ...this.state, colors: newColors });
+    } else {
+      const newColors = this.state.colors;
+      newColors.push(target.value as Color);
+      this.setState({ ...this.state, colors: newColors });
+    }
+  };
   private handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
     console.log(this.getModel());
   };
   public getModel(): Model {
-    return { paramValues: [...this.state.paramValues], colors: [] };
+    return this.state;
   }
 
   render() {
@@ -180,18 +191,19 @@ export default class ParamEditor extends React.Component<Props, State> {
             default:
               break;
           }
-          // return (
-          //   <div key={param.id}>
-          //     <label>{param.name}</label>
-          //     <input
-          //       type="text"
-          //       value={value}
-          //       data-id={param.id}
-          //       onChange={this.handleChange}
-          //     ></input>
-          //   </div>
-          // );
         })}
+        {colors.map((color, index) => (
+          <div key={index} className="row">
+            <label className="label">{color}</label>
+
+            <input
+              type="checkbox"
+              value={color}
+              checked={this.state.colors.includes(color)}
+              onChange={this.handleChangeColor}
+            />
+          </div>
+        ))}
         <input type="submit" value="Print model to console" />
       </form>
     );
