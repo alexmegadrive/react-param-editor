@@ -1,0 +1,60 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  box-sizing: border-box;
+  width: 300px;
+  border-radius: 5px;
+  height: 30px;
+  border: 1px solid grey;
+}
+input[type="submit"] {
+  margin-top: 30px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: rgb(245, 217, 167);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+input[type="submit"]:hover {
+  color: white;
+  border-color: darkorange;
+  background-color: orange;
+}
+
+.label {
+  font-weight: 700;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.row + .row {
+  margin-top: 5px;
+}
+
+.form {
+  width: 500px;
+}
